@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const ftp = require('basic-ftp');
 const multer = require('multer')
-//;:
 // Create an FTP client
 const client = new ftp.Client();
 
