@@ -1,38 +1,87 @@
-.App {
+
+.files-list{
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.file-container{
+width: 100%;
+display: flex;
+}
+  
+
+.file-data-container{
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.file-data-container-list{
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+}
+.file-icon{
+  width: 64px;
+}
+
+.file-data {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Ensures the text doesn't overflow the parent div */
+}
+
+.show-selector{
+  margin: 5px;
+  display: flex;
+  width: 80px;
+  justify-content: space-around;
+}
+.grid-list-icon{
+  cursor: pointer;
+  border: 1px solid grey;
+  padding: 3px;
+  border-radius: 5px;
+}
+.selected-grid-list{
+  background-color: rgba(111, 50, 123, 0.285);
+}
+
+
+/* table display  */
+table{
+  margin: 20px;
+  border-collapse: collapse;
+}
+tr:nth-child(even) {
+  background-color: #b56ed920;
+}
+
+tr{
+  border-bottom: 1px solid rgb(122, 45, 145);
+}
+td{
+  padding: 5px;
+}
+.table-fn{
+  width: 50%;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.table-fd{
+  width: 30%;
+  text-align: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.table-fs{
+  width: 10%;
+  text-align: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.table-fe{
+  width: 10%;
+  text-align: center;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.file-icon-table{
+  width: 32px;
 }
