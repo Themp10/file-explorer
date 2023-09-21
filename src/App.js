@@ -34,6 +34,23 @@ const App = () => {
     }
   };
 
+  const handleFileDownload = async (file) => {
+    console.log(file)
+    let data={"file":file}
+    try {
+      let response=await axios.post('http://ouss.sytes.net:8000/ftp/download', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      alert(response.data.message);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+   };
+    
+
+
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
@@ -129,7 +146,7 @@ const App = () => {
           selectedGL=="grid"?
           <Filesgrid data = {files} bytoToUnit={bytoToUnit}/>
           :
-          <Filestable data = {files} bytoToUnit={bytoToUnit}/> 
+          <Filestable data = {files} bytoToUnit={bytoToUnit} handleFileDownload={handleFileDownload}/> 
         }
         
      
