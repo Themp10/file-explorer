@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
-// Define the storage configuration for Multer
+// Define the storage configuration for Muter
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Specify the directory where uploaded files will be saved

@@ -16,7 +16,7 @@ const Uploader = ({handleFileChange,handleUpload,progress}) => {
             <input type="file" className='cu-fi-up' onChange={handleChange}/>
             <span className="file-name">{fileName}</span>
         </label>
-
+{/* //Dd */}
         
         <button className='upload-button' onClick={handleUpload}>{progress==0?'Upload': parseInt(progress) +' %'}</button>
     </div>

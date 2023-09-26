@@ -138,7 +138,7 @@ const App = () => {
           console.error('Failed to fetch data');
         }
       } catch (error) {
-        console.error('Error while fetching data:', error);
+        console.error('Error while fetchin g data:', error);
       }
     };
 
