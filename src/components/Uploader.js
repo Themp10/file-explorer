@@ -6,6 +6,7 @@ const Uploader = ({handleFileChange,handleUpload,progress}) => {
     const handleChange = (e)=>{
         setFileName(e.target.files[0].name)
         handleFileChange(e)
+        //ttt
     }
   return (
     <div className='uploader-container'>
