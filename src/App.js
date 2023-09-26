@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import filePng from './assets/file.png'
-import folderPng from './assets/folder.png'
 import listPng from './assets/list.png'
 import gridPng from './assets/grid.png'
+import reloadPng from './assets/reload.png'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 import './App.css';
 import Filestable from './components/Filestable';
 import Filesgrid from './components/Filesgrid';
+import Uploader from './components/Uploader';
 
 const App = () => {
   const [files, setFiles] = useState([]);
   const [file, setFile] = useState(null);
   const [selectedGL, setSelectedGL] = useState("grid");
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const toggleListGrid = (event) => {
     const gridIcon = document.querySelectorAll('.grid-list-icon')[0];
@@ -55,6 +58,7 @@ const App = () => {
     setFile(event.target.files[0]);
   };
   const handleUpload = async () => {
+    
     if (!file) {
       alert('Please select a file first');
       return;
@@ -68,12 +72,23 @@ const App = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        onUploadProgress: (progressEvent) => {
+          const progress = (progressEvent.loaded / progressEvent.total) * 100;
+          setUploadProgress(progress);
+        },
       });
+      toast.success(file.name +' Successfully uploaded!')
+      setTimeout(() => {
+        setUploadProgress(0)
+        setFile(null)
+      }, 1000);
+         
 
-      alert('File uploaded successfully');
     } catch (error) {
       console.error('Error uploading file:', error);
       alert('File upload failed');
+      setUploadProgress(0)
+      setFile(null)
     }
   };
   const bytoToUnit = (bt)=>{
@@ -129,18 +144,18 @@ const App = () => {
 
   return (
     <div>
+      <div><Toaster  position="top-center" reverseOrder={false}/></div>
       <h1>FTP File Explorer</h1>
-      <button onClick={fetchDataFromServer}>Fetch Data</button>
       {/* Add File */}
-      <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload File</button>
-    </div>
+      <Uploader handleFileChange = {handleFileChange} handleUpload={handleUpload} progress={uploadProgress}/>
 
       {/* List Files */}
         <div className='show-selector'>
+        
+          <img src={reloadPng} alt="reload" className='reload-icon' onClick={fetchDataFromServer}/>
           <img src={gridPng} alt="grid" className='grid-list-icon selected-grid-list' onClick={toggleListGrid}/>
           <img src={listPng} alt="list" className='grid-list-icon' onClick={toggleListGrid}/>
+
         </div>
         {
           selectedGL=="grid"?

@@ -27,7 +27,6 @@ const client = new ftp.Client();
 
 router.use(async (req, res, next) => {
   try {
-    console.log("Connecting to the FTP server....");
     await client.access({
       host: 'ouss.sytes.net',
       user: 'ftpuser',
@@ -42,9 +41,10 @@ router.use(async (req, res, next) => {
 });
 
 // Route to list files
-router.get('/list', async (req, res) => {
+router.get('/list', async (req, res,next) => {
   try {
     const list = await client.list();
+    next()
     res.json(list);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -54,12 +54,13 @@ router.get('/list', async (req, res) => {
 
 
 // Define your '/upload' route and handle file upload
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/upload', upload.single('file'), async (req, res,next) => {
   try {
     // Access the uploaded file using req.file
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
+    console.log("File uploaded....");
 
     // Define the source and destination paths
     const sourcePath = path.join(__dirname, 'uploads', req.file.filename);
@@ -67,9 +68,12 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
     // Copy the file to the destination directory
     fs.copyFileSync(sourcePath, destinationPath);
-
-
+    console.log("File copied....");
+    // Remove the file from the source path
+    fs.unlinkSync(sourcePath);
+    console.log("File removed....");
     // Send a success response
+    next();
     res.status(200).json({ message: 'File uploaded successfully' });
   } catch (error) {
     console.error('Error uploading file:', error.message);

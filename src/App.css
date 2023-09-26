@@ -37,7 +37,7 @@ align-items: center;
 .show-selector{
   margin: 5px;
   display: flex;
-  width: 80px;
+  width: 150px;
   justify-content: space-around;
 }
 .grid-list-icon{
@@ -45,6 +45,22 @@ align-items: center;
   border: 1px solid grey;
   padding: 3px;
   border-radius: 5px;
+}
+.reload-icon{
+  cursor: pointer;
+  border: 1px solid grey;
+  padding: 3px;
+  border-radius: 5px;
+  width: 24px;
+}
+.grid-list-icon:hover{
+  background-color: rgba(166, 60, 187, 0.468);
+}
+.reload-icon:hover {
+  background-color: rgba(166, 60, 187, 0.468);
+}
+.reload-icon:active{
+  background-color: rgba(111, 50, 123, 0.285);
 }
 .selected-grid-list{
   background-color: rgba(111, 50, 123, 0.285);
@@ -118,4 +134,62 @@ td{
 }
 .file-icon-table{
   width: 32px;
+}
+
+
+.uploader-container{
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 50px;
+}
+
+.cu-fi-up{
+  display: none;
+}
+.custom-file-upload{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+
+
+}
+.file-name{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 130px;
+  margin-left: 10px;
+}
+.upload-button{
+  width: 120px;
+  height: 40px;
+  background-color: blueviolet;
+  border:none;
+  border-radius: 5px;
+  color: white;
+}
+
+.progress-bar{
+  background-color: #8a2be2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  text-align: center;
+  height: 5px;
+  transition: 0.5s ease;
+  border-radius:5px 5px 0 0;
 }
