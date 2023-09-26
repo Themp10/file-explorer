@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 var cors = require('cors')
-const port = 8000; // Choose a port for your Express server
+const port = 8000; // Choose a port for your Express serv
 const ftpRouter = require('./ftp.router')
 
 const corsOptions = {
